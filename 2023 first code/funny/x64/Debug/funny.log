@@ -1,0 +1,3 @@
+﻿C:\APP\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (funny.vcxproj, 回文数.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  小玉在游泳.cpp
+  funny.vcxproj -> C:\code\C++\2023 first code\funny\x64\Debug\May.exe

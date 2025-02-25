@@ -1,0 +1,60 @@
+#include<iostream>
+using namespace std;
+
+int goal;
+const int inf =0x3f3f3f3f;
+const int maxn =100;
+int graph[maxn][maxn];
+int n,m;//the numbers of vertex and edge 
+int start;
+int pm[maxn][maxn];//pathmatrix.Record the predecessor point of the minimum path of the corresponding point
+int sp[maxn][maxn];//shortpath.Record the minimum path value between vertices
+void Floyd(){
+    int v,w,k;
+    for(v =0;v<n;++v){
+        for(w =0;w<n;++w){
+            sp[v][w] =graph[v][w];
+            pm[v][w] =w;
+        }
+    }
+
+    for(k =0;k<n;++k){
+        for(v =0;v<n;++v){
+            for(w =0;w<n;++w){
+                if(sp[v][w]>sp[v][k]+sp[k][w]){
+                    sp[v][w] =sp[v][k]+sp[k][w];
+                    pm[v][w] =pm[v][k];
+                }
+            }
+        }
+    }
+    for(int i =0;i<n;++i){
+            cout<<"\n" <<i <<" -> " <<goal <<" The minimum path is:" <<sp[i][goal] <<'\n';
+            k =pm[i][goal];
+            cout<<"path:"<<i;
+            while(k!=goal){
+                cout<<"-> " <<k;
+                k =pm[k][goal];
+            }
+            cout<<"-> " <<goal<<'\n';
+    }
+}
+int main(){
+    freopen("graph.in","r",stdin);
+    freopen("graph.out","w",stdout);    
+    cin>>n>>m;
+    for(int i =0;i<n;++i)
+        for(int j =0;j<m;++j){
+            if(i==j)
+                graph[i][j] =0;
+            else 
+                graph[i][j] =inf;
+        }
+    int u,v,w;
+        for(int i =0;i<m;++i){
+            cin>>u>>v>>w;
+            graph[u][v] =w;
+        }
+    cin>>goal;
+    Floyd();
+}
