@@ -18,20 +18,19 @@ using namespace std;
 
 class Solution {
 public:
-  int lengthOfLongestSubstring(string s) {
-    int res = 0;
-    for (int i = 0; i < s.length(); ++i) {
-      unordered_set<char> hashTable;
-      hashTable.insert(s[i]);
-      int nowLen = 1;
-      for (int j = i + 1; j < s.length(); ++j) {
-        if (hashTable.find(s[j]) == hashTable.end()) {
-          ++nowLen;
-          hashTable.insert(s[j]);
-        } else {
-          res = max(res, nowLen);
-        }
+  int maxSubArray(vector<int> &nums) {
+    int res = -0x3f3f3f;
+    vector<int> maxPrefixSum(nums.size());
+    maxPrefixSum[0] = nums[0];
+    for (int i = 1; i < nums.size(); ++i) {
+      if (maxPrefixSum[i - 1] > 0) {
+        maxPrefixSum[i] = nums[i] + maxPrefixSum[i - 1];
+      } else {
+        maxPrefixSum[i] = nums[i];
       }
+    }
+    for (int i = 0; i < nums.size(); ++i) {
+      res = max(res, maxPrefixSum[i]);
     }
     return res;
   }

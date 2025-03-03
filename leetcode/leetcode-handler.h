@@ -3,7 +3,7 @@
 #ifndef LEETCODE_HANDLER
 #define LEETCODE_HANDLER
 
-#include "438.find-all-anagrams-in-a-string.cpp"
+#include "560.subarray-sum-equals-k.cpp"
 #include "leetcode-io.h"
 
 namespace lc {
@@ -17,14 +17,14 @@ public:
     ~Handler() { delete solution_; }
     json::Json Handle(const json::Json& in, const std::string& fname) { return json::Create<json::JNull>(); }
     void Handle(io::SI& in, io::MO& out) {
-        string s;
-        in >> s;
-        string p;
-        in >> p;
+        vector<int> nums;
+        in >> nums;
+        int k;
+        in >> k;
         #ifdef LAZY_INTERACTION
         in.Input(LAZY_INTERACTION);
         #endif
-        out << solution_->findAnagrams(s, p) << std::endl;
+        out << solution_->subarraySum(nums, k) << std::endl;
     }
     
 private:
