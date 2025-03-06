@@ -62,6 +62,7 @@ int main() {
   Solution solution;
   vector<int> a = {0, 3, 30, 34, 5, 9};
   solution.crackPassword(a);
+  cout << "heloo";
 
   return 0;
 }

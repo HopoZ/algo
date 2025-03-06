@@ -3,7 +3,7 @@
 #ifndef LEETCODE_HANDLER
 #define LEETCODE_HANDLER
 
-#include "560.subarray-sum-equals-k.cpp"
+#include "189.rotate-array.cpp"
 #include "leetcode-io.h"
 
 namespace lc {
@@ -24,7 +24,9 @@ public:
         #ifdef LAZY_INTERACTION
         in.Input(LAZY_INTERACTION);
         #endif
-        out << solution_->subarraySum(nums, k) << std::endl;
+        solution_->rotate(nums, k);
+        out << nums << std::endl;
+        out << k << std::endl;
     }
     
 private:

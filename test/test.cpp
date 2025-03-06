@@ -18,20 +18,20 @@ using namespace std;
 
 class Solution {
 public:
-  int maxSubArray(vector<int> &nums) {
-    int res = -0x3f3f3f;
-    vector<int> maxPrefixSum(nums.size());
-    maxPrefixSum[0] = nums[0];
-    for (int i = 1; i < nums.size(); ++i) {
-      if (maxPrefixSum[i - 1] > 0) {
-        maxPrefixSum[i] = nums[i] + maxPrefixSum[i - 1];
+  vector<vector<int>> merge(vector<vector<int>> &intervals) {
+    if (intervals.size() == 0) {
+      return {};
+    }
+    sort(intervals.begin(), intervals.end());
+    vector<vector<int>> merged;
+    for (int i = 0; i < intervals.size(); ++i) {
+      int L = intervals[i][0], R = intervals[i][1];
+      if (!merged.size() || merged.back()[1] < L) {
+        merged.push_back({L, R});
       } else {
-        maxPrefixSum[i] = nums[i];
+        merged.back()[1] = max(merged.back()[1], R);
       }
     }
-    for (int i = 0; i < nums.size(); ++i) {
-      res = max(res, maxPrefixSum[i]);
-    }
-    return res;
+    return merged;
   }
 };
