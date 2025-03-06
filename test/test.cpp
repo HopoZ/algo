@@ -35,3 +35,7 @@ public:
     return merged;
   }
 };
+
+int main(){
+  std::cout<<
+}
